@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
     <div layout:fragment="content">
-        <div class="table-dark">
+        <div class="container my-3">
             <table class="table">
                 <thead class="table-dark">
                 <tr>
@@ -19,6 +19,7 @@
                 </tr>
                 </tbody>
             </table>
+            <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
         </div>
     </div>
 </html>
