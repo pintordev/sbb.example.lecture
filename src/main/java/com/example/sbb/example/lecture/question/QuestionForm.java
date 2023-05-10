@@ -1,4 +1,4 @@
-package com.example.lecture.question;
+package com.example.sbb.example.lecture.question;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

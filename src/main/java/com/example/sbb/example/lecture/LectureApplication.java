@@ -1,4 +1,4 @@
-package com.example.lecture;
+package com.example.sbb.example.lecture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

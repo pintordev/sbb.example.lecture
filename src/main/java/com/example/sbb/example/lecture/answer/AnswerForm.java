@@ -1,4 +1,4 @@
-package com.example.lecture.answer;
+package com.example.sbb.example.lecture.answer;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.example.lecture.question;
+package com.example.sbb.example.lecture.question;
 
-import com.example.lecture.answer.Answer;
+import com.example.sbb.example.lecture.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

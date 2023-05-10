@@ -10,8 +10,14 @@
   <title>SBB</title>
 </head>
 <body>
+  <!-- navigation bar Start; 공통적으로 보여야 하므로 공통 템플릿에 구현-->
+  <!-- navbar.html 에 따로 구현, th:fragment="navbarFragment" -->
+  <nav th:replace="~{navbar :: navbarFragment}"></nav>
+  <!-- navigation bar End -->
   <!-- 기본 템플릿 안에 삽입될 내용 Start -->
   <th:block layout:fragment="content"></th:block>
   <!-- 기본 템플릿 안에 삽입될 내용 End -->
+  <!-- Bootstrap JS -->
+  <script th:src="@{/bootstrap.min.js}"></script>
 </body>
 </html>

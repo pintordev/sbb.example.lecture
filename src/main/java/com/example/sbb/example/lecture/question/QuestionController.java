@@ -1,6 +1,6 @@
-package com.example.lecture.question;
+package com.example.sbb.example.lecture.question;
 
-import com.example.lecture.answer.AnswerForm;
+import com.example.sbb.example.lecture.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

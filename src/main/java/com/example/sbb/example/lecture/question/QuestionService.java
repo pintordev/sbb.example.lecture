@@ -1,6 +1,6 @@
-package com.example.lecture.question;
+package com.example.sbb.example.lecture.question;
 
-import com.example.lecture.DataNotFoundException;
+import com.example.sbb.example.lecture.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

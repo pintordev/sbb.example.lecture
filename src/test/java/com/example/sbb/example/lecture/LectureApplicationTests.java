@@ -1,9 +1,9 @@
-package com.example.lecture;
+package com.example.sbb.example.lecture;
 
-import com.example.lecture.answer.Answer;
-import com.example.lecture.answer.AnswerRepository;
-import com.example.lecture.question.Question;
-import com.example.lecture.question.QuestionRepository;
+import com.example.sbb.example.lecture.answer.Answer;
+import com.example.sbb.example.lecture.answer.AnswerRepository;
+import com.example.sbb.example.lecture.question.Question;
+import com.example.sbb.example.lecture.question.QuestionRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
