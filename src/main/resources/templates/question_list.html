@@ -10,7 +10,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="question, loop : ${questionList}">
+                <tr th:each="question, loop : ${paging}">
                     <td th:text="${loop.count}"></td>
                     <td>
                         <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
@@ -19,6 +19,43 @@
                 </tr>
                 </tbody>
             </table>
+            <!-- 페이지 버튼 생성 start -->
+            <!-- 이전 버튼 / 1, 2, 3, 4, ..., # / 다음 버튼 -->
+            <!-- paging 변수 크기가 0이 아닐 때에만 나타나도록 th:if 코드 삽입 -->
+            <div th:if="${!paging.isEmpty()}">
+                <ul class="pagination justify-content-center">
+                    <!-- 이전 버튼 -->
+                    <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${paging.number-1}|}">
+                            <span>이전</span>
+                        </a>
+                    </li>
+                    <!-- 1, 2, 3, 4, ..., # -->
+                    <!-- page 기준 +- 2 -->
+                    <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+                        th:if="${page >= paging.number-2 and page <= paging.number+2 and paging.number > 1 and paging.number < paging.totalPages-2}"
+                        th:classappend="${page == paging.number} ? 'active'">
+                        <a class="page-link" th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
+                    </li>
+                    <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+                        th:if="${paging.number <= 1 and page <= 4}"
+                        th:classappend="${page == paging.number} ? 'active'">
+                        <a class="page-link" th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
+                    </li>
+                    <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+                        th:if="${paging.number >= paging.totalPages-2 and page >= paging.totalPages-5}"
+                        th:classappend="${page == paging.number} ? 'active'">
+                        <a class="page-link" th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
+                    </li>
+                    <!-- 다음 버튼 -->
+                    <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                            <span>다음</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 페이지 버튼 생성 end -->
             <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
         </div>
     </div>
