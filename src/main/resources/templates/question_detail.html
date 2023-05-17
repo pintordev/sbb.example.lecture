@@ -9,12 +9,30 @@
                 <div class="card-body">
                     <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
                     <div class="d-flex justify-content-end">
+                        <!-- 질문 수정일 -->
+                        <div th:if="${question.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                            <div class="mb-2">modified at</div>
+                            <div th:text="${#temporals.format(question.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+                        </div>
                         <div class="badge bg-light text-dark p-2 text-start">
+                            <!-- 질문 작성자 -->
                             <div class="mb-2">
                                 <span th:if="${question.author != null}" th:text="${question.author.username}"></span>
                             </div>
+                            <!-- 질문 작성일 -->
                             <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                         </div>
+                    </div>
+                    <div class="my-3">
+                        <!-- 질문 수정 버튼 -->
+                        <!-- 조건: 로그인 된 상태, 작가가 존재, 해당 작가가 로그인 한 작가-->
+                        <a th:href="@{|/question/modify/${question.id}|}" sec:authorize="isAuthenticated()"
+                           th:if="${question.author != null and question.author.username == #authentication.getPrincipal().getUsername()}" class="btn btn-sm btn-outline-secondary">수정</a>
+                        <!-- 질문 삭제 버튼 -->
+                        <!-- 조건: 로그인 된 상태, 작가가 존재, 해당 작가가 로그인 한 작가-->
+                        <a href="javascript:void(0);"
+                           th:data-uri="@{|/question/delete/${question.id}|}" sec:authorize="isAuthenticated()"
+                           th:if="${question.author != null and question.author.username == #authentication.getPrincipal().getUsername()}" class="delete btn btn-sm btn-outline-secondary">삭제</a>
                     </div>
                 </div>
             </div>
@@ -27,12 +45,30 @@
                 <div class="card-body">
                     <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
                     <div class="d-flex justify-content-end">
+                        <!-- 답변 수정일 -->
+                        <div th:if="${answer.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                            <div class="mb-2">modified at</div>
+                            <div th:text="${#temporals.format(answer.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+                        </div>
                         <div class="badge bg-light text-dark p-2 text-start">
+                            <!-- 답변 작성자 -->
                             <div class="mb-2">
                                 <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
                             </div>
+                            <!-- 답변 작성일 -->
                             <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                         </div>
+                    </div>
+                    <div class="my-3">
+                        <!-- 답변 수정 버튼 -->
+                        <!-- 조건: 로그인 된 상태, 작가가 존재, 해당 작가가 로그인 한 작가-->
+                        <a th:href="@{|/answer/modify/${answer.id}|}" sec:authorize="isAuthenticated()"
+                        th:if="${answer.author != null and answer.author.username == #authentication.getPrincipal().getUsername()}" class="btn btn-sm btn-outline-secondary">수정</a>
+                        <!-- 답변 삭제 버튼 -->
+                        <!-- 조건: 로그인 된 상태, 작가가 존재, 해당 작가가 로그인 한 작가-->
+                        <a href="javascript:void(0);"
+                           th:data-uri="@{|/answer/delete/${answer.id}|}" sec:authorize="isAuthenticated()"
+                           th:if="${answer.author != null and answer.author.username == #authentication.getPrincipal().getUsername()}" class="delete btn btn-sm btn-outline-secondary">삭제</a>
                     </div>
                 </div>
             </div>
@@ -46,4 +82,14 @@
             </form>
         </div>
     </div>
+    <script layout:fragment="script" type='text/javascript'>
+        const delete_elements = document.getElementsByClassName("delete");
+        Array.from(delete_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if (confirm("정말로 삭제하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+                };
+            });
+        });
+    </script>
 </html>
